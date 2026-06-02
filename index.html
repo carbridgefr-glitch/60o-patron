@@ -1,1 +1,305 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Α' Σχολική σας παρουσιάζει</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
+    :root {
+      --blue: #1e5eff;
+      --blue-dark: #1547c9;
+      --red: #ff0000;
+      --red-dark: #cc0000;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --bg1: #eef4ff;
+      --bg2: #f9fbff;
+      --card: rgba(255, 255, 255, 0.96);
+      --shadow: 0 18px 45px rgba(27, 64, 140, 0.15);
+      --review-border: #e5e7eb;
+      --star: #f4c430;
+      --green: #16a34a;
+      --green-dark: #15803d;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+      color: var(--text);
+      min-height: 100%;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px 16px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 430px;
+      background: var(--card);
+      border-radius: 28px;
+      padding: 28px 20px 22px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.85);
+      backdrop-filter: blur(6px);
+    }
+
+    .logo-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue) 0%, #5da8ff 100%);
+      margin: 0 auto 14px;
+      box-shadow: 0 0 0 8px rgba(30, 94, 255, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 27px;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .reunion-box {
+      margin: 0 0 24px;
+      padding: 16px 14px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #edf4ff 100%);
+      border: 1px solid rgba(30, 94, 255, 0.16);
+      box-shadow: 0 10px 24px rgba(30, 94, 255, 0.10);
+    }
+
+    .reunion-label {
+      display: inline-block;
+      margin-bottom: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(30, 94, 255, 0.10);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .reunion-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .reunion-date {
+      margin: 6px 0 0;
+      font-size: 15px;
+      line-height: 1.4;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 62px;
+      margin: 12px 0;
+      padding: 16px 18px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .button:active {
+      transform: scale(0.99);
+    }
+
+    .button-primary {
+      background: linear-gradient(180deg, var(--blue) 0%, var(--blue-dark) 100%);
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(30, 94, 255, 0.28);
+    }
+
+    .button-youtube {
+      background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(255, 0, 0, 0.28);
+    }
+
+    .button-review {
+      background: #ffffff;
+      color: var(--text);
+      border: 1px solid var(--review-border);
+      box-shadow: 0 10px 24px rgba(17, 24, 39, 0.07);
+    }
+
+    .button-call {
+      background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(22, 163, 74, 0.22);
+      font-size: 16px;
+      min-height: 72px;
+    }
+
+    .icon {
+      font-size: 21px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .stars {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin-right: 2px;
+    }
+
+    .star {
+      color: var(--star);
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .extra-text {
+      margin: 20px 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid #edf0f5;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .footer a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 380px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .reunion-title {
+        font-size: 18px;
+      }
+
+      .button {
+        font-size: 16px;
+        min-height: 58px;
+      }
+
+      .button-call {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo-dot"></div>
+
+    <h1>Α' Σχολική σας παρουσιάζει</h1>
+    <p class="subtitle">Επιλέξτε την ενέργεια που θέλετε και προχωρήστε άμεσα.</p>
+
+    <div class="reunion-box">
+      <span class="reunion-label">School Reunion</span>
+      <p class="reunion-title">Το reunion του σχολείου μας</p>
+      <p class="reunion-date">θα γίνει στις 15/6/2036</p>
+    </div>
+
+    <a
+      class="button button-youtube"
+      href=""
+      aria-label="Δες τη συνέντευξη τάξης"
+    >
+      <span class="icon">▶️</span>
+      <span>Δες τη συνέντευξη τάξης</span>
+    </a>
+
+    <a
+      class="button button-primary"
+      href="https://www.google.com/maps/place/Vasilopoulos+Studio+%CE%A6%CF%89%CF%84%CE%BF%CE%B3%CF%81%CE%B1%CF%86%CE%AF%CE%B1%CF%82-Alfasxoliki/@38.2368117,21.7418069,17z/data=!3m1!4b1!4m6!3m5!1s0x135e3769107b3c11:0x96fad6c3a9ba4fb9!8m2!3d38.2368075!4d21.7443818!16s%2Fg%2F11yxhq3srq?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D"
+      aria-label="Η τοποθεσία μας"
+    >
+      <span class="icon">📍</span>
+      <span>Η τοποθεσία μας</span>
+    </a>
+
+    <a
+      class="button button-review"
+      href="https://search.google.com/local/writereview?placeid=ChIJETx7EGk3XhMRuU-6qcPW-pY"
+      aria-label="Άφησε Google Review"
+    >
+      <span class="stars" aria-hidden="true">
+        <span class="star">★</span>
+      </span>
+      <span>Άφησε Google Review</span>
+    </a>
+
+    <a
+      class="button button-primary"
+      href="https://alfasxolikifotografia.gr/"
+      aria-label="Μπείτε στο site μας"
+    >
+      <span class="icon">🌐</span>
+      <span>Μπείτε στο site μας</span>
+    </a>
+
+    <p class="extra-text">
+      Για γάμους, βαφτίσεις και τις πιο χαρούμενες προσωπικές σας στιγμές,
+      καλέστε τον δημιουργό μας, Ανδρέα Βασιλόπουλο.
+    </p>
+
+    <a
+      class="button button-call"
+      href="tel:+306981006813"
+      aria-label="Καλέστε τον Ανδρέα Βασιλόπουλο"
+    >
+      <span class="icon">📞</span>
+      <span>Καλέστε τον Ανδρέα Βασιλόπουλο</span>
+    </a>
+
+    <div class="footer">
+      Powered by NFC Brelok • Jewel Art<br>
+      <a href="https://www.instagram.com/lazaros_jewelart">Instagram</a>
+    </div>
+  </main>
+</body>
+</html>
